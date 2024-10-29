@@ -26,13 +26,23 @@ export const todoSlice = createSlice({
         id: action.payload,
       };
 
-      state.todos = state.todos.filter((todos) => {
-        todos.id !== removeId;
+      state.todos = state.todos.filter((todo) => {
+        todo.id !== removeId;
       });
+    },
+    editTodo: (state, action) => {
+      const { editId, editTask } = action.payload;
+      const findEditingTask = state.todos.find((todo) => {
+        console.log(editId);
+        console.log(todo.id);
+
+        todo.id === editId;
+      });
+      console.log(findEditingTask);
     },
   },
 });
 
-export const {addTodo,removeTodo} = todoSlice.actions;
+export const { addTodo, removeTodo, editTodo } = todoSlice.actions;
 
 export default todoSlice.reducer;
